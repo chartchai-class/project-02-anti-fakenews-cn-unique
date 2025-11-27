@@ -1,0 +1,28 @@
+name: Deploy Backend to Aliyun ECS
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Aliyun Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+          script: |
+            cd /data/projects/project-02-anti-fakenews-cn-unique
+
+            git pull
+
+            docker-compose -f docker-compose-prod.yml down
+
+            docker-compose -f docker-compose-prod.yml up --build -d
