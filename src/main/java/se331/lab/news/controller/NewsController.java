@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import se331.lab.news.dto.NewsDTO;
 import se331.lab.news.dto.NewsRequestDTO;
+import se331.lab.news.dto.VoteRequestDTO;
 import se331.lab.news.service.NewsService;
 
 import java.util.List;
@@ -42,5 +43,10 @@ public class NewsController {
     @PostMapping
     public ResponseEntity<NewsDTO> addNews(@RequestBody NewsRequestDTO newsRequest) {
         return ResponseEntity.ok(newsService.addNews(newsRequest));
+    }
+
+    @PostMapping("/{newsId}/votes")
+    public ResponseEntity<NewsDTO> addVote(@PathVariable Long newsId, @RequestBody VoteRequestDTO voteRequest) {
+        return ResponseEntity.ok(newsService.addVote(newsId, voteRequest));
     }
 }
