@@ -1,8 +1,10 @@
+D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\dto\NewsRequestDTO.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\entity\News.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\entity\Vote.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\repository\NewsRepository.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\repository\VoteRepository.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\util\DataLoader.java
+D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\dto\VoteRequestDTO.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\service\NewsService.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\Application.java
 D:\linux_backup\desktop\CAMT\Lab13\project-02-anti-fakenews-cn-unique\src\main\java\se331\lab\news\dto\NewsDTO.java
