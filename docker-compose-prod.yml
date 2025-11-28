@@ -15,7 +15,7 @@ services:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: password
   backend:
-    image: ${{ secrets.DOCKER_HUB_USERNAME }}/project-02-anti-fakenews-cn-unique:latest
+    image: ${DOCKER_HUB_USERNAME}/project-02-anti-fakenews-cn-unique:latest
     ports:
       - "3292:8080"
 
