@@ -1,0 +1,15 @@
+se331\lab\news\dto\NewsDTO.class
+se331\lab\news\dto\NewsRequestDTO$NewsRequestDTOBuilder.class
+se331\lab\Application.class
+se331\lab\news\entity\News.class
+se331\lab\util\DataLoader.class
+se331\lab\news\dto\VoteRequestDTO$VoteRequestDTOBuilder.class
+se331\lab\news\controller\NewsController.class
+se331\lab\news\entity\Vote.class
+se331\lab\Application$1.class
+se331\lab\news\dto\VoteRequestDTO.class
+se331\lab\news\repository\VoteRepository.class
+se331\lab\news\dto\NewsDTO$NewsDTOBuilder.class
+se331\lab\news\dto\NewsRequestDTO.class
+se331\lab\news\repository\NewsRepository.class
+se331\lab\news\service\NewsService.class
