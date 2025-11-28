@@ -2,46 +2,22 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:8.0 # Use a specific version of MySQL
-    container_name: anti-fakenews-db
+    image: mysql
+    ports:
+      - "3293:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: antifakenews_db # Matches the spring.datasource.url in application-prod.properties
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql # Persistent data volume
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
-
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: anti-fakenews-phpmyadmin
+    image: phpmyadmin
+    ports:
+      - "3294:80"
     environment:
-      PMA_HOST: db # Connects to the 'db' service defined above
+      PMA_HOST: db
       MYSQL_ROOT_PASSWORD: password
-    ports:
-      - "9000:80"
-    depends_on:
-      - db
-
   backend:
-    build: . # Build from the Dockerfile in the current directory
-    image: gsyp10032/anti-fakenews-backend:latest # Image name for our backend
-    container_name: anti-fakenews-backend
+    image: ${{ secrets.DOCKER_HUB_USERNAME }}/se331-backend:latest
     ports:
-      - "8999:8080" # Maps host port 8999 to container port 8080 (as specified in PDF)
-    environment:
-      SPRING_PROFILES_ACTIVE: prod # Activates our 'prod' profile for MySQL connection
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/antifakenews_db?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC # Connect to 'db' service
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: password
-    depends_on:
-      db:
-        condition: service_healthy # Ensure DB is healthy before starting backend
-    restart: on-failure
+      - "3292:8080"
 
 volumes:
   db_data: # Define the named volume for database persistence
