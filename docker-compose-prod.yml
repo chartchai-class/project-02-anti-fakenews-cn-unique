@@ -18,6 +18,11 @@ services:
     image: ${DOCKER_HUB_USERNAME}/project-02-anti-fakenews-cn-unique:latest
     ports:
       - "3292:8080"
+    environment:
+      JAVA_PROFILE: prod,db
+    depends_on:
+      - db
+    restart: on-failure
 
 volumes:
   db_data: # Define the named volume for database persistence
