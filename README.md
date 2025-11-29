@@ -12,6 +12,12 @@
 
 This is the backend service for the Social Anti-Fake News System. It provides a RESTful API to manage news articles, user votes, and comments. It is built with Spring Boot and uses a MySQL database for data persistence.
 
+## Live Deployment
+
+- **Backend API:** http://59.45.10.246:3292
+- **MySQL Database:** mysql://59.45.10.246:3293 (for direct access, e.g., using a client)
+- **phpMyAdmin:** http://59.45.10.246:3294
+
 ## API Features
 
 - **News Management:**
