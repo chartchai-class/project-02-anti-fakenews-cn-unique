@@ -11,6 +11,7 @@
 ## Project Description
 
 This is the backend service for the Social Anti-Fake News System. It provides a RESTful API to manage news articles, user votes, and comments. It is built with Spring Boot and uses a MySQL database for data persistence.
+Please note: This version of the project focuses on core functionalities. User authentication, registration, and authorization features (e.g., JWT) have been simplified/removed for this specific version.
 
 ## Live Deployment
 
@@ -21,11 +22,28 @@ This is the backend service for the Social Anti-Fake News System. It provides a 
 ## API Features
 
 - **News Management:**
-  - `GET /news`: Fetches a paginated list of all news articles.
-  - `GET /news/{id}`: Retrieves a single news article by its ID.
-  - `POST /news`: Adds a new news article to the database.
+  - `GET /api/news`: Fetches a paginated list of all news articles.
+  - `GET /api/news/{id}`: Retrieves a single news article by its ID.
+  - `POST /api/news`: Adds a new news article to the database.
+    ```json
+    {
+        "topic": "Example News Topic",
+        "shortDescription": "A brief summary of the news.",
+        "fullContent": "The detailed content of the news article.",
+        "reporter": "John Doe",
+        "imageUrl": "http://example.com/image.jpg"
+    }
+    ```
 - **Voting:**
-  - `POST /news/{id}/vote`: Submits a vote for a specific news article. The vote details are included in the request body.
+  - `POST /api/news/{newsId}/votes`: Submits a vote for a specific news article.
+    ```json
+    {
+        "isFake": true,
+        "comment": "This information seems fabricated.",
+        "imageUrl": "http://example.com/proof.jpg",
+        "voter": "Anonymous"
+    }
+    ```
 
 ## Tech Stack
 
@@ -43,17 +61,19 @@ This is the backend service for the Social Anti-Fake News System. It provides a 
 
 - Java 17 or later
 - Maven 3.x
-- A running MySQL instance
+- Docker and Docker Compose (for running a local MySQL instance)
 
 ### Setup
 
 1.  **Configure Database:**
-    - The database connection is configured in `src/main/resources/application-prod.properties`.
-    - You may need to create a local configuration file (e.g., `application-dev.properties`) and update the `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` properties to match your local MySQL setup.
-    - Create a database named `fakenews`. Spring Boot can create the schema automatically on startup if configured.
+    - The application expects database credentials via environment variables (e.g., `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`).
+    - For local development, it's recommended to run MySQL via Docker Compose.
+    - The `docker-compose.yml` in the project root defines a `db` service with a `MYSQL_ROOT_PASSWORD` set.
+    - Ensure your application's environment variables (or local `application.properties`/`application.yml`) match these.
+    - The database name is `antifakenews_db` (as per `application-prod.properties`). Spring Boot can create the schema automatically on startup.
 
 2.  **Run the application:**
-    - You can run the application using your IDE by running the `main` method in `Application.java`.
+    - You can run the application using your IDE by running the `main` method in `Application.java`. Ensure appropriate environment variables are set for your IDE run configuration.
     - Alternatively, you can use Maven:
       ```bash
       mvn spring-boot:run
